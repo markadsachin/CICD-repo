@@ -2,7 +2,7 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "aws_vpc" "main" {
+/*resource "aws_vpc" "main" {
   cidr_block = "172.16.0.0/16"
   instance_tenancy = "default"
   tags = {
@@ -40,23 +40,23 @@ resource "aws_security_group" "jenkins-sg-2022" {
   tags= {
     Name = var.security_group
   }
-}
+} */
 
 resource "aws_instance" "myFirstInstance" {
   ami           = var.ami_id
-  key_name = var.key_name
+ # key_name = var.key_name
   instance_type = var.instance_type
-  vpc_security_group_ids = [aws_security_group.jenkins-sg-2022.id]
+  #vpc_security_group_ids = [aws_security_group.jenkins-sg-2022.id]
   tags= {
     Name = var.tag_name
   }
 }
 
 # Create Elastic IP address
-resource "aws_eip" "myFirstInstance" {
+/*resource "aws_eip" "myFirstInstance" {
   vpc      = true
   instance = aws_instance.myFirstInstance.id
 tags= {
     Name = "my_elastic_ip"
   }
-}
+}*/
